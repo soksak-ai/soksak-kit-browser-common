@@ -1,5 +1,5 @@
 {
-  "name": "soksak-browser-kit",
+  "name": "soksak-kit-browser-shell",
   "version": "0.0.1",
   "description": "Shared browser shell logic + BrowserDriver contract for soksak browser plugins (native / chromium windowed / chromium offscreen).",
   "type": "module",
@@ -11,7 +11,7 @@
     "./lifecycle": "./src/lifecycle.ts",
     "./input-forward": "./src/input-forward.ts"
   },
-  "repository": "github:soksak-ai/soksak-browser-kit",
+  "repository": "github:soksak-ai/soksak-kit-browser-shell",
   "license": "MIT",
   "scripts": {
     "test": "vitest run"

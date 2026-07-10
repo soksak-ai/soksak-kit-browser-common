@@ -1,4 +1,4 @@
-# soksak-browser-kit
+# soksak-kit-browser-shell
 
 Shared browser-shell logic and the `BrowserDriver` contract for soksak's browser
 plugins. The three browsers (`soksak-plugin-browser-native`,
@@ -22,11 +22,11 @@ consume the same decisions.
 ## Using from a plugin
 
 ```json
-"devDependencies": { "soksak-browser-kit": "github:soksak-ai/soksak-browser-kit" }
+"devDependencies": { "soksak-kit-browser-shell": "github:soksak-ai/soksak-kit-browser-shell" }
 ```
 
 ```ts
-import { normalizeUrl, renderNavState, createLifecycle, forwardInput } from "soksak-browser-kit";
+import { normalizeUrl, renderNavState, createLifecycle, forwardInput } from "soksak-kit-browser-shell";
 ```
 
 Plugins bundle with esbuild; the kit ships TypeScript sources and is bundled
