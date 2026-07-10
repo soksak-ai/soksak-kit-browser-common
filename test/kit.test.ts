@@ -58,7 +58,7 @@ describe("createLifecycle", () => {
     expect(lc.ledgerRead()).toEqual([2]);
   });
 
-  it("입양 지도: set/get/delete + sessionStorage 영속(새 인스턴스가 읽는다)", () => {
+  it("재부착 지도: set/get/delete + sessionStorage 영속(새 인스턴스가 읽는다)", () => {
     const a = createLifecycle({ storagePrefix: "t" });
     a.byviewSet("v1", 7);
     const b = createLifecycle({ storagePrefix: "t" }); // 재적재된 다음 인스턴스
@@ -67,16 +67,16 @@ describe("createLifecycle", () => {
     expect(b.byviewGet("v1")).toBeUndefined();
   });
 
-  it("디바운스 close: adopt 가 취소하고, 미입양이면 발화한다", () => {
+  it("디바운스 close: reattach 가 취소하고, 미재부착이면 발화한다", () => {
     const lc = createLifecycle({ storagePrefix: "t", closeDebounceMs: 100 });
     const fired: number[] = [];
     lc.scheduleClose(5, () => fired.push(5));
     expect(lc.pendingCloseIds()).toEqual([5]);
-    expect(lc.adopt(5)).toBe(true); // remount 입양 — 취소
+    expect(lc.reattach(5)).toBe(true); // remount 재부착 — 취소
     vi.advanceTimersByTime(200);
     expect(fired).toEqual([]);
     lc.scheduleClose(6, () => fired.push(6));
-    vi.advanceTimersByTime(200); // 입양 없음 — 발화
+    vi.advanceTimersByTime(200); // 재부착 없음 — 발화
     expect(fired).toEqual([6]);
     expect(lc.pendingCloseIds()).toEqual([]);
   });

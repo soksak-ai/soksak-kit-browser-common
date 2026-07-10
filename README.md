@@ -13,7 +13,7 @@ the single source for the parts that must not drift.
 | `driver` | `BrowserDriver` — the backend contract a plugin implements (navigate / back / forward / reload / stop / bounds / hidden / focus / close + nav / title / loading / cursor / popup-url events), aligned with `soksak-sidecar-browser-spec` |
 | `url` | `normalizeUrl` — address-bar input to a loadable URL |
 | `nav-state` | loading / canBack / canForward → toolbar rendering decisions (reload↔stop toggle, progress bar, back/forward enablement) |
-| `lifecycle` | reload-surviving lifetime: adoption map (viewId→id, page state survives plugin reloads), created ledger (removed only on a confirmed close), debounced close (a remount cancels it), and the pure `reclaimTargets` reconcile decision |
+| `lifecycle` | reload-surviving lifetime: re-attach map (viewId→id, page state survives plugin reloads), created ledger (removed only on a confirmed close), debounced close (a remount cancels it), and the pure `reclaimTargets` reconcile decision |
 | `input-forward` | DOM events → engine input messages for offscreen hosting (mouse / wheel / key / Korean IME, including WKWebView's non-standard composition path — WebKit bug 274700) |
 
 Framework-free: React views (native / chromium) and vanilla views (offscreen)
