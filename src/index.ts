@@ -8,3 +8,5 @@ export { createLifecycle, reclaimTargets } from "./lifecycle";
 export type { Lifecycle, LifecycleOptions } from "./lifecycle";
 export { forwardInput } from "./input-forward";
 export type { SendInput } from "./input-forward";
+export { createBrowserToolbar } from "./toolbar";
+export type { BrowserToolbar, ToolbarCallbacks } from "./toolbar";
