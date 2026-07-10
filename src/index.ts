@@ -9,4 +9,14 @@ export type { Lifecycle, LifecycleOptions } from "./lifecycle";
 export { forwardInput } from "./input-forward";
 export type { SendInput } from "./input-forward";
 export { createBrowserToolbar } from "./toolbar";
+export {
+  jsStr,
+  domTextBody,
+  domHtmlBody,
+  domQueryBody,
+  domClickBody,
+  domFillBody,
+  domSubmitBody,
+  domWaitForBody,
+} from "./dom-snippets";
 export type { BrowserToolbar, ToolbarCallbacks } from "./toolbar";
