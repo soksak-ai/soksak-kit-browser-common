@@ -22,6 +22,8 @@ export interface Lifecycle {
   byviewGet(viewId: string): number | undefined;
   /** 재부착 지도의 모든 id — reconcile 의 claimed 계산용(재부착 대기 중인 서피스 보호). */
   byviewValues(): number[];
+  /** 재부착 지도 전체(viewId → surfaceId) — 진단·특정 서피스를 가리키는 항목 정리용. */
+  byviewEntries(): Array<[string, number]>;
   byviewSet(viewId: string, id: number): void;
   byviewDelete(viewId: string): void;
   /** unmount 시 — 디바운스 후 doClose 실행. remount 의 reattach 가 취소한다. */
@@ -76,6 +78,9 @@ export function createLifecycle(opts: LifecycleOptions): Lifecycle {
     },
     byviewValues() {
       return Object.values(byviewRead());
+    },
+    byviewEntries() {
+      return Object.entries(byviewRead());
     },
     byviewSet(viewId, id) {
       ssWrite(BYVIEW, { ...byviewRead(), [viewId]: id });
