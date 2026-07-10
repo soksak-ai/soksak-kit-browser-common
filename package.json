@@ -1,0 +1,25 @@
+{
+  "name": "soksak-browser-kit",
+  "version": "0.0.1",
+  "description": "Shared browser shell logic + BrowserDriver contract for soksak browser plugins (native / chromium windowed / chromium offscreen).",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./driver": "./src/driver.ts",
+    "./url": "./src/url.ts",
+    "./nav-state": "./src/nav-state.ts",
+    "./lifecycle": "./src/lifecycle.ts",
+    "./input-forward": "./src/input-forward.ts"
+  },
+  "repository": "github:soksak-ai/soksak-browser-kit",
+  "license": "MIT",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "jsdom": "^25.0.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.0.0"
+  }
+}
