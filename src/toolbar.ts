@@ -32,9 +32,11 @@ function btn(node: string, label: string, title: string): HTMLButtonElement {
   b.setAttribute("data-node", node);
   b.textContent = label;
   b.title = title;
+  // 색은 코어 테마 계약(soksak-theme-spec v1)의 토큰 슬롯만 소비한다 — 존재하지 않는 변수를
+  // 발명하면 폴백이 조용히 적용되어 테마(라이트/다크)를 무시한다(실측: 라이트에서 다크 툴바).
   b.style.cssText =
     "flex:0 0 auto;width:30px;height:30px;border-radius:6px;border:0;" +
-    "background:var(--color-background,#111);color:var(--color-text,#eee);" +
+    "background:var(--inset);color:var(--fg);" +
     "font:15px system-ui;cursor:pointer";
   return b;
 }
@@ -47,7 +49,7 @@ export function createBrowserToolbar(
   bar.setAttribute("data-node", "toolbar");
   bar.style.cssText =
     "position:relative;display:flex;gap:4px;padding:6px;flex:0 0 auto;align-items:center;" +
-    "background:var(--color-background-soft,#222)";
+    "background:var(--side);border-bottom:1px solid var(--bd)"; // 페이지와의 경계(라이트에서 면 톤이 같음)
 
   const back = btn("back", "‹", "뒤로");
   const forward = btn("forward", "›", "앞으로");
@@ -58,11 +60,11 @@ export function createBrowserToolbar(
   url.type = "text";
   url.placeholder = "URL 또는 검색어";
   url.style.cssText =
-    "flex:1 1 auto;padding:6px 10px;border-radius:6px;border:1px solid var(--color-border,#444);" +
-    "background:var(--color-background,#111);color:var(--color-text,#eee);font:13px system-ui";
+    "flex:1 1 auto;padding:6px 10px;border-radius:6px;border:1px solid var(--bd);" +
+    "background:var(--inset);color:var(--fg);font:13px system-ui";
   const go = btn("go", "↵", "이동");
-  go.style.background = "var(--color-accent,#3b82f6)";
-  go.style.color = "#fff";
+  go.style.background = "var(--acc)";
+  go.style.color = "var(--bg)"; // 액센트 위 대비색 — 테마의 배경색이 액센트의 반대 극이다
   const star = btn("bookmark", "☆", "북마크");
   const extraSlot = document.createElement("div");
   extraSlot.setAttribute("data-node", "extra");
@@ -71,7 +73,7 @@ export function createBrowserToolbar(
   progress.setAttribute("data-node", "progress");
   progress.style.cssText =
     "position:absolute;left:0;bottom:0;height:2px;width:0;" +
-    "background:var(--color-accent,#3b82f6);transition:width .25s ease-out;opacity:0";
+    "background:var(--acc);transition:width .25s ease-out;opacity:0";
 
   bar.append(back, forward, reload, home, url, go, star, extraSlot, progress);
   container.appendChild(bar);
