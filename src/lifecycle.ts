@@ -20,6 +20,8 @@ export interface Lifecycle {
   /** close 가 엔진에서 확인된 때에만 부른다. */
   ledgerRemove(id: number): void;
   byviewGet(viewId: string): number | undefined;
+  /** 입양 지도의 모든 id — reconcile 의 claimed 계산용(입양 대기 중인 서피스 보호). */
+  byviewValues(): number[];
   byviewSet(viewId: string, id: number): void;
   byviewDelete(viewId: string): void;
   /** unmount 시 — 디바운스 후 doClose 실행. remount 의 adopt 가 취소한다. */
@@ -71,6 +73,9 @@ export function createLifecycle(opts: LifecycleOptions): Lifecycle {
     },
     byviewGet(viewId) {
       return byviewRead()[viewId];
+    },
+    byviewValues() {
+      return Object.values(byviewRead());
     },
     byviewSet(viewId, id) {
       ssWrite(BYVIEW, { ...byviewRead(), [viewId]: id });
