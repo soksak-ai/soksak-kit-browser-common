@@ -69,4 +69,11 @@ describe("createBrowserToolbar", () => {
     tb.setUrl("https://a.com");
     expect(url.value).toBe("https://a.com");
   });
+
+  it("툴바 행 계약 — 행 치수는 테마 토큰을 소비한다(자체 재창조 금지)", () => {
+    const { container } = make();
+    const bar = node(container, "toolbar");
+    expect(bar.style.height).toMatch(/var\(--toolbar-h/);
+    expect(bar.style.padding).toMatch(/var\(--toolbar-pad-x/);
+  });
 });

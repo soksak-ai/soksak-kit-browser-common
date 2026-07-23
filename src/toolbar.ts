@@ -34,10 +34,12 @@ function btn(node: string, label: string, title: string): HTMLButtonElement {
   b.title = title;
   // 색은 코어 테마 계약(soksak-theme-spec v1)의 토큰 슬롯만 소비한다 — 존재하지 않는 변수를
   // 발명하면 폴백이 조용히 적용되어 테마(라이트/다크)를 무시한다(실측: 라이트에서 다크 툴바).
+  // 툴바 행 계약(코어 PLUGIN-CONTRACT §Toolbar row) — 행 치수는 테마 토큰이 소유하므로
+  // 컨트롤은 행(--toolbar-h)에 들어맞는 고정 22px 로 맞춘다.
   b.style.cssText =
-    "flex:0 0 auto;width:30px;height:30px;border-radius:6px;border:0;" +
+    "flex:0 0 auto;width:26px;height:22px;border-radius:6px;border:0;" +
     "background:var(--inset);color:var(--fg);" +
-    "font:15px system-ui;cursor:pointer";
+    "font:13px system-ui;cursor:pointer";
   return b;
 }
 
@@ -47,8 +49,10 @@ export function createBrowserToolbar(
 ): BrowserToolbar {
   const bar = document.createElement("div");
   bar.setAttribute("data-node", "toolbar");
+  // 툴바 행 계약(코어 PLUGIN-CONTRACT §Toolbar row) — 치수는 테마 토큰 소유, 자체 재창조 금지.
   bar.style.cssText =
-    "position:relative;display:flex;gap:4px;padding:6px;flex:0 0 auto;align-items:center;" +
+    "position:relative;display:flex;gap:4px;flex:0 0 auto;align-items:center;" +
+    "height:var(--toolbar-h,28px);padding:0 var(--toolbar-pad-x,8px);" +
     "background:var(--side);border-bottom:1px solid var(--bd)"; // 페이지와의 경계(라이트에서 면 톤이 같음)
 
   const back = btn("back", "‹", "뒤로");
@@ -60,8 +64,9 @@ export function createBrowserToolbar(
   url.type = "text";
   url.placeholder = "URL 또는 검색어";
   url.style.cssText =
-    "flex:1 1 auto;padding:6px 10px;border-radius:6px;border:1px solid var(--bd);" +
-    "background:var(--inset);color:var(--fg);font:13px system-ui";
+    "flex:1 1 auto;height:22px;box-sizing:border-box;padding:0 10px;border-radius:6px;" +
+    "border:1px solid var(--bd);" +
+    "background:var(--inset);color:var(--fg);font:12px system-ui";
   const go = btn("go", "↵", "이동");
   go.style.background = "var(--acc)";
   go.style.color = "var(--bg)"; // 액센트 위 대비색 — 테마의 배경색이 액센트의 반대 극이다
