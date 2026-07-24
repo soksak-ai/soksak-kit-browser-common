@@ -20,5 +20,4 @@ export {
   domWaitForBody,
 } from "./dom-snippets";
 export type { BrowserToolbar, ToolbarCallbacks } from "./toolbar";
-export { leadPosition, freezeDecision, createMoveFreeze } from "./motion-freeze";
-export type { MoveFreeze, MoveFreezeOptions } from "./motion-freeze";
+export { leadPosition } from "./motion-freeze";
